@@ -15,7 +15,7 @@ IUSE=""
 
 RDEPEND=">=media-libs/clutter-1.6.0"
 DEPEND="${RDEPEND}
-	dev-util/pkg-config"
+	dev-util/pkgconfig"
 
 src_configure() {
 	econf

@@ -4,6 +4,8 @@
 
 EAPI=3
 
+inherit eutils
+
 DESCRIPTION="Simple timer application using gtk+"
 HOMEPAGE="http://happytimer.kldp.net/projects/happytimer/"
 SRC_URI="http://happytimer.kldp.net/frs/download.php/5985/${P}.tar.gz"
@@ -22,8 +24,10 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	sys-devel/gettext"
 
-src_install(){
-	emake DESTDIR="${D}" install || die "emake install failed"
+src_prepare() {
+	epatch "${FILESDIR}"/${PV}-invalid-malloc.patch || die
+}
 
-	dodoc README COPYING AUTHORS INSTALL NEWS ChangeLog || die
+src_install() {
+	emake DESTDIR="${D}" install || die "emake install failed"
 }

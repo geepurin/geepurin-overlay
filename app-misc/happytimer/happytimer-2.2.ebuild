@@ -23,5 +23,7 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext"
 
 src_install(){
-	emake DESTDIR="${D}" install || "emake install failed"
+	emake DESTDIR="${D}" install || die "emake install failed"
+
+	dodoc README COPYING AUTHORS INSTALL NEWS ChangeLog || die
 }
